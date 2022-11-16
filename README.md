@@ -1,5 +1,5 @@
-# Tugas 7 PBP Gasal 2023
 ### Annisa Az Zahra - 2106701242 - PBP A
+# Tugas 7 PBP Gasal 2023
 
 ## Jawaban Soal
 
@@ -89,4 +89,5 @@ Satu-satunya perbedaan antara final dan const adalah bahwa const membuat variabe
     )
     ```
 
-5. Melakukan hot restart
+5. Melakukan hot restart 🔥
+
