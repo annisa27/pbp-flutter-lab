@@ -1,4 +1,49 @@
 ### Annisa Az Zahra - 2106701242 - PBP A
+-----
+# Tugas 8 PBP Gasal 2023
+## Jawaban Soal
+
+### Jelaskan perbedaan Navigator.push dan Navigator.pushReplacement.
+`Navigator.push` menambahkan Route lain ke atas stack dari Navigator
+
+`Navigator.pushReplacement` akan menambahkan Route ke atas stack sekaligus menghilangkan Route yang sebelumnya (halaman saat ini akan di replace dengan halaman baru).
+
+### Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+| Widget | Fungsi Widget | 
+| :------------ |:--------------- |
+| `Row & Column`    | Menampilkan children-nya secara horizontal atau vertikal |
+| `Text`    | Menampilkan sebuah string dengan single style |
+| `Padding`    | Memberikan padding sebagai jarak pada child dengan konten pembungkus |
+| `Center`    | Memposisikan childnya pada tengah halaman |
+| `Card`    | Membuat card untuk menampilkan masing-masing informasi dari form |
+| `Form` | Containter untuk melakukan grouping terhadap beberapa form field widget |
+| `TextFormField` | Field text untuk input |
+| `DropdownButtonFormField` | Menampilkan menu dropdown |
+| `TextButton` | Membuat button dengan isi text |
+| `InputDecoration` | Melakukan styling pada input |
+
+
+### Sebutkan jenis-jenis event yang ada pada Flutter (contoh: onPressed).
+| Event | Keterangan | 
+| :------------ |:--------------- |
+| `onPressed`    | Suatu fungsi akan dijalankan ketika widget selesai ditekan oleh user |
+| `onSaved`    | Suatu fungsi akan dijalankan ketika user menyimpan form |
+| `onChanged`    | event yang terjadi ketika ada perubahan |
+
+### Jelaskan bagaimana cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter.
+Navigator menggunakan paradigma stack dalam mengganti halaman yakni LIFO (Last In First Out). Halaman yang ditampilkan adalah yang berada di atas stack (top of stack) ketika melakukan push.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+1. Menambahkan drawer/hamburger menu pada app yang telah dibuat sebeumnya dengan membuat berkas `drawer.dart` yang berisi widget `Drawer` dengan routing ke halaman counter_7, form, dan data_budget.
+2. Menambahkan halaman form dengan membuat berkas `form.dart` yang berisi elemen input dan dropdown. Menambahkan input dengan tipe data berupa String untuk judul, int untuk nominal, dan Datetime.
+3. Menyimpan data yang di-input ke dalam list dan di dalam bentuk card.
+4. Menampilkan data berbentuk card ke halaman Data Budget dengan mengiterasi list.
+
+
+
+-----
+
+
 # Tugas 7 PBP Gasal 2023
 
 ## Jawaban Soal
