@@ -1,5 +1,104 @@
 ### Annisa Az Zahra - 2106701242 - PBP A
 -----
+# Tugas 9 PBP Gasal 2023
+## Jawaban Soal
+
+### Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Kita dapat mengambil data JSON tanpa membuat model dengan cara membuat dynamic map dari JSON dan mengakses nilainya dengan konsep dictionary `('data[key]')`. Namun hal ini tidak lebih baik daripada membuat model sebelum melakukan pengambilan data JSON karena bisa saja terjadi perubahan struktur fields atau hilang atau malah tidak sesuai yang diinginkan, jika hal ini terjadi akan sulit dikelola.
+
+
+### Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+| Widget | Fungsi Widget | 
+| :------------ |:--------------- |
+| `Checkbox`    | Membuat checkbox dengan event onChange, akan berubah setiap value watchednya berubah. Pada tugas ini berfungsi untuk menandai film yang watched dan unwatched |
+| `ListTile`    | menampung teks sebagai leading dan trailing |
+| `TextButton`    | membuat button |
+
+
+### Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter.
+Data Json yang telah disediakan sebelumnya pada halaman heroku, diambil menggunakan HTTP yang terdapat di fungsi `fetchWatchlist` yang akan memanggil fungsi GET yang mengembalikan daftar objek dari `MyWatchlist`. 
+
+`FutureBuilder` akan memanggil fungsi dan menunggu responnya. Ketika datanya diambil, `FutureBuilder` akan mengembalikan `ListView.builder` yang membangun `ListTiles` dimana telah berisi data yang akan di-mapping dimana didapatkan dari fungsi `fetchWatchlist`
+
+### Implementasi
+1. Membuat page `watchlist.dart`
+2. Menambahkan watchlist pada drawer
+``` dart
+    ListTile(
+                title: const Text('My Watchlist'),
+                onTap: () {
+                // Route menu ke halaman data budget
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyWatchlistPage()),
+                );
+                },
+            ),
+```
+
+3. Membuat 'fetch_watchlist.dart' dan menambahkan fungsi untuk mengambil data dari API.
+``` dart
+    Future<List<MyWatchlist>> fetchWatchlist() async {
+    var url = Uri.parse('https://tugas-2-pbp-rifqi.herokuapp.com/mywatchlist/json/');
+    var response = await http.get(
+        url,
+        headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+        },
+    );
+
+    // melakukan decode response menjadi bentuk json
+    var data = jsonDecode(utf8.decode(response.bodyBytes));
+
+    // melakukan konversi data json menjadi object MyWatchlist
+    List<MyWatchlist> listMyWatchlist = [];
+    for (var d in data) {
+        if (d != null) {
+        listMyWatchlist.add(MyWatchlist.fromJson(d));
+        }
+    }
+
+    return listMyWatchlist;
+    }
+```
+
+4. Menambahkan `MyWatchlistPage StatefulWidget` pada `watchlist.dart` yang berisi `FutureBuilder` disertai fungsi `fetchWatchlist` untuk mengambil data.
+
+5. Membuat `watchlist_detail.dart` dan menambahkan `MyWatchlistDetailPage StatelessWidget` yang berfungsi untuk menampilkan data yang diambil dari `MyWatchlistPage`.
+
+6. Meneruskan data dari `MyWatchlistPage` ke `MyWatchlistDetailPage` menggunakan `Navigator.push`
+``` dart
+    onTap: () {
+        // Route menu ke halaman utama
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    MyWatchlistDetailPage(
+                movie: snapshot.data![index],
+                ),
+            ));
+        },
+```
+
+7. Menambahkna widget `CheckBox` dan fungsi `onChanged` untuk Bonus
+``` dart
+trailing: Checkbox(
+    activeColor: Colors.limeAccent,
+    checkColor: Colors.black,
+    focusColor: Colors.lightGreenAccent,
+    value: snapshot.data![index].fields.watched,
+    onChanged: (bool? value) {
+        setState(() {
+        snapshot.data![index].fields.watched =
+            value!;
+        });
+    },
+    ),
+```
+
+-----
 # Tugas 8 PBP Gasal 2023
 ## Jawaban Soal
 
